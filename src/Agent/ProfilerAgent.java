@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 package Agent;
-
-/**
- *
- * @author srinivaik
- */
-public class ProfilerAgent {
+import jade.core.Agent;
+public class ProfilerAgent extends Agent{
     
 }
