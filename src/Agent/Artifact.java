@@ -1,14 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Agent;
+import java.io.Serializable;
+import java.util.Date;
 
-/**
- *
- * @author srinivaik
- */
-public class Artifact {
-    
+public class Artifact implements Serializable{
+    private final int id;
+    private String name,creator,dateofcreation, genre;
+
+    public Artifact(int id, String name, String creator, String genre){
+        this.id = id;
+        this.name = name;
+        this.creator = creator;
+        this.genre = genre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setCreator(String creator){
+        this.creator = creator;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setDateofcreation(){
+        this.dateofcreation = dateofcreation;
+    }
+    public int getDateofcreation(){
+        return Integer.parseInt(dateofcreation);
+    }
+
+    public void setGenre(){
+        this.dateofcreation = dateofcreation;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
 }
