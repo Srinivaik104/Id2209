@@ -19,7 +19,7 @@ public class CuratorAgent extends Agent{
 
     protected void setup(){
         System.out.println("Agent " + getAID().getLocalName() + " is ready.");
-        //addArtifacts();
+        updateArtifact();
 
         /*register agent with the DF*/
         DFAgentDescription dfd = new DFAgentDescription();
@@ -78,7 +78,7 @@ public class CuratorAgent extends Agent{
             if (msg.getContent() != null && msg.getContent().equals("museum-catalogue")) {
                 //All catalogue request message received, process it
                 try {
-
+                    //Message from tour agent
                     ACLMessage reply = msg.createReply();
                     reply.setPerformative(ACLMessage.INFORM);
                     reply.setContentObject(museum);
@@ -90,7 +90,7 @@ public class CuratorAgent extends Agent{
 
             } else if(msg.getContent() != null) {
                 try {
-                    //String name = msg.getContent();
+                    //Message from profiler
                     ArrayList<Integer> items = (ArrayList) msg.getContentObject();
                     ArrayList<Artifact> res = new ArrayList();
                     items.stream().forEach((item) -> {
@@ -130,33 +130,14 @@ public class CuratorAgent extends Agent{
     }
 
     /*    This method stored hard corded use info when the user inserts a new */
-    public void updateArtifact(final String name, final String creator){
+    public void updateArtifact(){
 
-        addBehaviour(new ArtifactManager(name, creator));
+        museum = new Artifact[3];
+        museum [0]= new Artifact(67, "Mona Lisa", "Leonardo da Vinci", "Painting");
+        museum [1] = new Artifact(12, "The Scream", "Edvard Munch", "Painting");
+        museum [2] = new Artifact(75, "David", "Michelangelo", "Sculpture");
     }
 
-    class ArtifactManager extends OneShotBehaviour{
-        private String artname,artcreator;
-
-        private ArtifactManager(String n,String c){
-            artname = n;
-            artcreator = c;
-        }
-        public void onStart(){
-            //Insert new artifact to existing ones
-            /* artifact.put(artname, this);
-            artifact.put(artcreator, this);*/
-            museum = new Artifact[3];
-            museum [0]= new Artifact(67, "Mona Lisa", "Leonardo da Vinci", "Painting");
-            museum [1] = new Artifact(12, "The Scream", "Edvard Munch", "Painting");
-            museum [2] = new Artifact(75, "David", "Michelangelo", "Sculpture");
-        }
-        @Override
-        public void action() {
-            //To Do: Fetch data from storage location
-
-        }
-    }
 
 }
 
