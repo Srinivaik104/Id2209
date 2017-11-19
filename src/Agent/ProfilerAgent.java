@@ -51,6 +51,8 @@ public class ProfilerAgent extends  Agent{
 
             //starting a curator
             sb.addSubBehaviour( new getArtifactsDescription (res));
+
+            addBehaviour( sb );
         } catch (FIPAException ex) {
             Logger.getLogger(ProfilerAgent.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -154,4 +156,3 @@ public class ProfilerAgent extends  Agent{
     }
 
 }//ProfilerAgent
-
