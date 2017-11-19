@@ -74,7 +74,7 @@ public class CuratorAgent extends Agent{
         @Override
         protected void handleMessage(ACLMessage msg) {
 
-            msg = myAgent.receive();
+            // msg = myAgent.receive();
             if (msg.getContent() != null && msg.getContent().equals("museum-catalogue")) {
                 //All catalogue request message received, process it
                 try {
@@ -123,11 +123,6 @@ public class CuratorAgent extends Agent{
 
        /*agent clean up*/
 
-    @Override
-    protected void takeDown() {
-        super.takeDown();
-        System.out.println("Curator Agent:" + getAID().getName() + "terminating");
-    }
 
     /*    This method stored hard corded use info when the user inserts a new */
     public void updateArtifact(){
@@ -138,6 +133,14 @@ public class CuratorAgent extends Agent{
         museum [2] = new Artifact(75, "David", "Michelangelo", "Sculpture");
     }
 
+    // Agent termination
+    @Override protected void takeDown() {
+        // Deregister from the yellow pages
+        try {DFService.deregister(this);}
+        catch (FIPAException fe) {}
+        // Printout a dismissal message
+        System.out.println("Agent " + getAID().getName() + " terminating.");
+    }
 
 }
 

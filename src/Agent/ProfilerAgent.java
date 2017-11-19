@@ -143,5 +143,15 @@ public class ProfilerAgent extends  Agent{
         }
     }
 
+    // Agent termination
+    @Override
+    protected void takeDown() {
+        // Deregister from the yellow pages
+        try {DFService.deregister(this);}
+        catch (FIPAException fe) {}
+        // Printout a dismissal message
+        System.out.println("Agent " + getAID().getName() + " terminating.");
+    }
+
 }//ProfilerAgent
 
